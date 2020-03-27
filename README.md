@@ -1,6 +1,6 @@
 # About this project
 
-The aim of this project is to create an API which is able to guarantee the communication from client to server and vice versa.
+The aim of this project is to create an API for Gruppone's Stalker project, which is able to guarantee the communication from client to server and vice versa.
 
 ## Library in use
 
