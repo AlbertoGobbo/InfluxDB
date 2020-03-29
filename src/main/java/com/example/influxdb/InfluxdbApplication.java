@@ -40,7 +40,7 @@ public class InfluxdbApplication {
 		AccessLogPoint p = new AccessLogPoint();
 
 		influxDB.write(Point.measurement(p.nameMeasurement())
-            .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+			.time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
             .addField(p.nameAnonymousKey(), "dewefw")
             .addField(p.nameOrganizationId(), "moicnm")
             .addField(p.namePlaceId(), "iowen")
@@ -56,6 +56,10 @@ public class InfluxdbApplication {
 
 		wo.writePoint();
 		ro.readPoint();*/
+
+		///tracking/organization/place
+		///tracking/{userId}/{organizationId}/unknownIdentity
+		///tracking/{userId}/{organizationId}/knownIdentity
 		
 	}
 

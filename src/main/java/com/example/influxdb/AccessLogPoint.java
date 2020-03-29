@@ -24,6 +24,7 @@ public class AccessLogPoint{
     @Column(name = "inside")
     private boolean inside;
 
+    //Methods useful to print field keys (with "" in addField)
     public String nameMeasurement(){
         return "access_log";
     }
@@ -46,6 +47,52 @@ public class AccessLogPoint{
 
     public String nameInside(){
         return "inside";
+    }
+
+    //Getter methods
+    public Instant getTime(){
+        return time;
+    }
+
+    public String getUserId(){
+        return user_id;
+    }
+
+    public String getAnonymousKey(){
+        return anonymous_key;
+    }
+
+    public String getOrganizationId(){
+        return organization_id;
+    }
+
+    public String getPlaceId(){
+        return place_id;
+    }
+
+    public boolean getInside(){
+        return inside;
+    }
+
+    //Setter methods
+    public void setUserId(String s){
+        this.user_id=s;
+    }
+
+    public void setAnonymousKey(String s){
+        this.anonymous_key=s;
+    }
+
+    public void setOrganizationId(String s){
+        this.organization_id=s;
+    }
+
+    public void setPlaceId(String s){
+        this.place_id=s;
+    }
+
+    public void setInside(Boolean b){
+        this.inside=b;
     }
     
 }
