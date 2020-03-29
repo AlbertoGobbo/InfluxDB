@@ -2,7 +2,7 @@
 
 The aim of this project is to create an API which is able to guarantee the communication with the Time-Series Database [InfluxDB](https://docs.influxdata.com/influxdb/v1.7/introduction/getting-started/) from client to server and vice versa.
 
-## HOW ARE THE DATA STRUCTURED INTO INFLUXDB
+## How are the data structured into InfluxDB
 
 Name of measurement (similar to the concept of table in SQL): access_log
 Below the are the measurement's columns, with the association of field_key -> field_value and the data type for each one:
