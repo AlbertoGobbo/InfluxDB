@@ -34,7 +34,7 @@ public class Place{
     }
 
     public void setOrganizationId(int o){
-        this.organization_id 0 o;
+        this.organization_id = o;
     }
 
     public void setName(String n){

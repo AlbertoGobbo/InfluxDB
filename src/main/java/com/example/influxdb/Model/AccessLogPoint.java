@@ -1,4 +1,4 @@
-package com.example.influxdb;
+package com.example.influxdb.Model;
 
 import java.time.Instant;
 import org.influxdb.annotation.*;

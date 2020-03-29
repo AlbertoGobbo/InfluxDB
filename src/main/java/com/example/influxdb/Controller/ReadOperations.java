@@ -1,4 +1,6 @@
-package com.example.influxdb;
+package com.example.influxdb.Controller;
+
+import com.example.influxdb.Model.AccessLogPoint;
 
 import org.influxdb.InfluxDB;
 import org.influxdb.dto.Query;
