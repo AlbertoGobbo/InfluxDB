@@ -30,8 +30,12 @@ The original Maven dependency can be converted in Gradle dependency with this [w
 ## How to start InfluxDB locally
 
 Open a CLI and run **influxd**.
+
 After open an other CLI and run **influx**: this call permits to enter in the InfluxDB console.
+
 If the user must authenticate it, run **auth** and insert user and password.
+
 To select **xxx** database, run **use xxx**.
+
 
 The syntax of queries and commands is very similar to SQL sintax.
