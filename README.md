@@ -26,3 +26,12 @@ So, there will not be problems with the last InfluxDB Docker Image, so 1.7.
 It would be possible to use [JFlux library](https://github.com/nickRm/jflux).
 
 The original Maven dependency can be converted in Gradle dependency with this [web site](https://sagioto.github.io/maven2gradle/).
+
+## How to start InfluxDB locally
+
+Open a CLI and run **influxd**.
+After open an other CLI and run **influx**: this call permits to enter in the InfluxDB console.
+If the user must authenticate it, run **auth** and insert user and password.
+To select **xxx** database, run **use xxx**.
+
+The syntax of queries and commands is very similar to SQL sintax.
