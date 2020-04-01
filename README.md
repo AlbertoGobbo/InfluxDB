@@ -16,18 +16,11 @@ Below the are the measurement's columns, with the association of field_key -> fi
 
 Added in build.gradle the dependency [influxdb-java](https://github.com/influxdata/influxdb-java).
 
-<<<<<<< HEAD
-Pay attention: the version of Gradle dependency is the latest, so 2.17. Getting in touch with the library's developer Stefan Mayer (stefan.majer@gmail.com), it has been confirmed that the version 2.17 is compatible with all influxdb version from 1.1 to 1.7.
-
-So, there will not be problems with the last InfluxDB Docker Image, so 1.7.
-
-=======
 For an accurate reading of all methods, examine [Javadoc Documentation](https://javadoc.io/doc/org.influxdb/influxdb-java/latest/index.html).
 
 Pay attention: the version of Gradle dependency is the latest, so 2.17. Getting in touch with the library's developer Stefan Mayer (stefan.majer@gmail.com), it has been confirmed the version 2.17 is compatible with all influxdb version from 1.1 to 1.7.
 
 So, there will not be problems with the last InfluxDB Docker Image, so 1.7.
->>>>>>> feat: modify the project structure and start /tracking/inside endpoint
 
 ## Alternative library
 
