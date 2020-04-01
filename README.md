@@ -45,5 +45,4 @@ The syntax of queries and commands is very similar to SQL sintax.
 * To solve [error 405](https://www.baeldung.com/spring-request-method-not-supported-405)
 
 * Pay attention to the **error 500**! According to [this site](https://www.yawintutor.com/there-was-an-unexpected-error-type-internal-server-error-status-500/) : "*The controller class is responsible for processing the request from the client. In controller class, the request is processed and the response is sent back to the user. The Json request is processed in RestController class in the restful web service and sends Json response to the so called application. In some cases the controller class will not process the request because of some code bug or data issue. Instead, a Runtime Exception is thrown. The request to the calling application can not be servered. The internal server error created with http error code is 500, in this case.*".
-
 So follow this [link](https://www.baeldung.com/spring-request-response-body), to discover and solve the typical error is in the definition of @ResponseBody and @RequestBody.
