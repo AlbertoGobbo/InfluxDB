@@ -12,40 +12,33 @@ public class InfluxDBPoint{
     @Column(name = "time")
     private Instant time;
     
-    @Column(name = "user_id")
-    private String user_id;
+    @Column(name = "userId")
+    private int userId;
 
-    @Column(name = "anonymous_key")
-    private String anonymous_key;
+    @Column(name = "anonymousKey")
+    private int anonymousKey;
 
-    @Column(name = "organization_id")
-    private String organization_id;
-
-    @Column(name = "place_id")
-    private String place_id;
+    @Column(name = "placeId")
+    private int placeId;
 
     @Column(name = "inside")
     private boolean inside;
 
     //Methods useful to print field keys (with "" in addField)
     public String nameMeasurement(){
-        return "access_log";
+        return "accessLog";
     }
 
     public String nameUserId(){
-        return "user_id";
+        return "userId";
     }
 
     public String nameAnonymousKey(){
-        return "anonymous_key";
-    }
-
-    public String nameOrganizationId(){
-        return "organization_id";
+        return "anonymousKey";
     }
 
     public String namePlaceId(){
-        return "place_id";
+        return "placeId";
     }
 
     public String nameInside(){
@@ -57,20 +50,16 @@ public class InfluxDBPoint{
         return time;
     }
 
-    public String getUserId(){
-        return user_id;
+    public int getUserId(){
+        return userId;
     }
 
-    public String getAnonymousKey(){
-        return anonymous_key;
+    public int getAnonymousKey(){
+        return anonymousKey;
     }
 
-    public String getOrganizationId(){
-        return organization_id;
-    }
-
-    public String getPlaceId(){
-        return place_id;
+    public int getPlaceId(){
+        return placeId;
     }
 
     public boolean getInside(){
@@ -78,20 +67,16 @@ public class InfluxDBPoint{
     }
 
     //Setter methods
-    public void setUserId(String s){
-        this.user_id=s;
+    public void setUserId(Integer s){
+        this.userId=s;
     }
 
-    public void setAnonymousKey(String s){
-        this.anonymous_key=s;
+    public void setAnonymousKey(int s){
+        this.anonymousKey=s;
     }
 
-    public void setOrganizationId(String s){
-        this.organization_id=s;
-    }
-
-    public void setPlaceId(String s){
-        this.place_id=s;
+    public void setPlaceId(int s){
+        this.placeId=s;
     }
 
     public void setInside(Boolean b){

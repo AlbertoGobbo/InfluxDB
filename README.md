@@ -4,13 +4,13 @@ The aim of this project is to create an API which is able to guarantee the commu
 
 ## How are the data structured into InfluxDB
 
-Name of measurement (similar to the concept of table in SQL): access_log
+Name of measurement (similar to the concept of table in SQL): accessLog
 Below the are the measurement's columns, with the association of field_key -> field_value and the data type for each one:
 
-| time      | user_id | anonymous_key | organization_id | place_id | inside  |
-| --------- | ------- | ------------- | --------------- | -------- | ------- |
-| TIMESTAMP | string  | string        | string          | string   | Boolean |
-| ...       | ...     | ...           | ...             | ...      | ...     |
+| time      | userId  | anonymousKey | placeId | inside  |
+| --------- | ------- | ------------ | ------- | ------- |
+| TIMESTAMP | Integer | Integer      | Integer | Boolean |
+| ...       | ...     | ...          | ...     | ...     |
 
 ## Library in use
 
