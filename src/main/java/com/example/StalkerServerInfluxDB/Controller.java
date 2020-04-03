@@ -68,22 +68,9 @@ public class Controller{
         return "Tracking inside ok";
     }
 
+    /* Endpoint to do--------------------------------------------------------------------------
 
-    /*
-    @PostMapping("/tracking/inside")
-    public StringQueryResult trackingInside(@RequestBody Map <String, String> body) {
-
-       return "Tracking outside ok";
-    }*/
-    
-    /*@PostMapping("/tracking/outside")
-    public SomeEnityData trackingOutside(@RequestBody SomeEnityData entity) {
-        
-        return entity;
-    }*/
-
-
-    /*@PostMapping("/tracking/{userId}/{organizationId}/unknownIdentity")
+    @PostMapping("/tracking/{userId}/{organizationId}/unknownIdentity")
     public AccessLogPoint anonymousTrackingUser(){
         return p;
     }
@@ -101,18 +88,8 @@ public class Controller{
     @DeleteMapping("/tracking/organization/place")
     public AccessLogPoint exitUserInPlace(){
         return p;
-    }*/
-
-	/*influxDB.write(Point.measurement(p.nameMeasurement())
-		.time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-        .addField(p.nameAnonymousKey(), "dewefw")
-        .addField(p.nameOrganizationId(), "moicnm")
-        .addField(p.namePlaceId(), "iowen")
-        .addField(p.nameInside(), false)
-		.build());
-			
-	final QueryResult queryResult = influxDB.query(new Query("SELECT * FROM " + p.nameMeasurement(), p.nameMeasurement()));
-
-    System.out.println(queryResult);*/
+    }
+    
+    -----------------------------------------------------------------------------------------*/
 
 }
