@@ -4,7 +4,8 @@ The aim of this project is to create an API which is able to guarantee the commu
 
 ## How are the data structured into InfluxDB
 
-Name of measurement (similar to the concept of table in SQL): accessLog
+Name of measurement (similar to the concept of table in SQL): _accessLog_
+
 Below the are the measurement's columns, with the association of field_key -> field_value and the data type for each one:
 
 | time      | timestampMs (via locationInfo) | userId       | anonymous | placeId      | inside  |
@@ -13,31 +14,64 @@ Below the are the measurement's columns, with the association of field_key -> fi
 | <!--      | TIMESTAMP                      | TIMESTAMP    | string    | Boolean      | string  | Boolean | --> |
 | ...       | ...                            | ...          | ...       | ...          | ...     |
 
-Example of JSON received (if user enters in a private organization):
+**Note 1**: *placeId* has received as an array of int.
 
+**Note 2**: at the second row on the table above, they have indicated the fields type which will be modified after the Technology Baseline.
+
+**Note 3**: as written at the _Note 2_, **anonymous** field key will become **anonymousKey** .
+
+## Examples of JSON files which are received from the Android mobile application with /location/update endpoint
+
+_Right_ examples:
+* **If user enters in a private organization**: userId have an integer number, and anonymous is set to false
+
+```
 {
-  "timestampMs": 1585906080346,
-  "userId": 34753543,
-  "placeId": [
-    45378,
-    71984
-  ],
-  "anonymous": false,
-  "inside": true
+	"timestampMs": "2020-04-03T15:35:46+057Z", 
+	"userId": 1,
+	"placeId": [78, 90],
+	"anonymous": false,
+	"inside": true
 }
+```
 
-Example of JSON received (if user enters in a public organization):
+* **If user enters in a public organization**: userId is set to "", and anonymous is set to true
 
+```
 {
-  "timestampMs": 1585906080346,
-  "userId": "",
-  "placeId": [
-    453785436,
-    71984147938
-  ],
-  "anonymous": true,
-  "inside": true
+	"timestampMs": "2020-04-03T15:40:46+057Z",
+	"userId": "",
+	"placeId": [14],
+	"anonymous": true,
+	"inside": true
 }
+```
+
+_Wrong_ examples:
+
+* **when userId have an integer number, but anonymous is set to true**
+
+```
+{
+	"timestampMs": "2020-04-03T15:35:46+057Z", 
+	"userId": 1,
+	"placeId": [78, 90],
+	"anonymous": true,
+	"inside": true
+}
+```
+
+* **when userId is set to "", but anonymous is set to false**
+
+```
+{
+	"timestampMs": "2020-04-03T15:40:46+057Z",
+	"userId": "",
+	"placeId": [14],
+	"anonymous": false,
+	"inside": true
+}
+```
 
 ## Library in use
 
