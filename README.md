@@ -10,8 +10,8 @@ Below the are the measurement's columns, with the association of field_key -> fi
 
 | time      | timestampMs (via locationInfo) | userId       | anonymous | placeId      | inside  |
 | --------- | ------------------------------ | ------------ | --------- | ------------ | ------- |
-| TIMESTAMP | TIMESTAMP                      | unsigned int | Boolean   | unsigned int | Boolean |
-| <!--      | TIMESTAMP                      | TIMESTAMP    | string    | Boolean      | string  | Boolean | --> |
+| TIMESTAMP | TIMESTAMP                      | unsigned int | boolean   | unsigned int | boolean |
+| TIMESTAMP | TIMESTAMP                      | string       | boolean   | string       | boolean |
 | ...       | ...                            | ...          | ...       | ...          | ...     |
 
 **Note 1**: *placeId* has received as an array of int.
