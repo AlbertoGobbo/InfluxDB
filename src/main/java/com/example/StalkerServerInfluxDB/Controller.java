@@ -9,6 +9,7 @@ import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.Point;
 import org.json.*;
 import org.springframework.web.bind.annotation.*;
+
 @CrossOrigin
 @RestController
 public class Controller{
@@ -27,48 +28,40 @@ public class Controller{
         InfluxDB influxDB = InfluxDBFactory.connect(connection.getURL(),connection.getUser(),connection.getPassword());
         influxDB.setDatabase(connection.getDatabase());
 
-        if(!body.get(point.namePlaceId()).getClass().isArray()){
+        JSONObject jsonObject = new JSONObject(body);
+        List<String> listPlaceData = new ArrayList<String>();
+        JSONArray jArray = jsonObject.getJSONArray(point.namePlaceId());
+        if (jArray != null) { 
+            for (int i = 0; i < jArray.length(); i++) listPlaceData.add(jArray.get(i).toString());
+        }
 
-            JSONObject jsonObject = new JSONObject(body);
-            List<String> listPlaceData = new ArrayList<String>();
-            JSONArray jArray = jsonObject.getJSONArray(point.namePlaceId());
-            if (jArray != null) { 
-                for (int i = 0; i < jArray.length(); i++)
-                    listPlaceData.add(jArray.get(i).toString());
-            }
-            
-
+        if( (body.get(point.nameUserId()).toString() != "") && (Boolean.parseBoolean(body.get(point.nameAnonymous()).toString())) == false ){
             for(int i = 0; i < listPlaceData.size(); i++) {
                 influxDB.write(Point.measurement(point.nameMeasurement())
                 .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+                //.addField(point.nameTimestampMs(), java.sql.Timestamp.valueOf(body.get(point.nameTimestampMs()).toString())) -> not available addField(String, Timestamp)
+                .addField(point.nameTimestampMs(), body.get(point.nameTimestampMs()).toString())
                 .addField(point.nameUserId(), Integer.parseInt(body.get(point.nameUserId()).toString()))
                 .addField(point.nameAnonymous(), Boolean.parseBoolean((body.get(point.nameAnonymous()).toString())))
                 .addField(point.namePlaceId(), Integer.parseInt(listPlaceData.get(i)))
                 .addField(point.nameInside(), Boolean.parseBoolean(body.get(point.nameInside()).toString()))
                 .build());
-            } 
-        }else{ //VA (da implementare controllo anonymousKey == NULL, allora influxDB.write diverso)
-            influxDB.write(Point.measurement(point.nameMeasurement())
+            }
+        }else if( (body.get(point.nameUserId()).toString() == "") && (Boolean.parseBoolean(body.get(point.nameAnonymous()).toString())) == true ){
+            for(int i = 0; i < listPlaceData.size(); i++) {
+                influxDB.write(Point.measurement(point.nameMeasurement())
                 .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-                .addField(point.nameUserId(), Integer.parseInt(body.get(point.nameUserId()).toString()))
+                //.addField(point.nameTimestampMs(), java.sql.Timestamp.valueOf(body.get(point.nameTimestampMs()).toString())) -> not available addField(String, Timestamp)
+                .addField(point.nameTimestampMs(), body.get(point.nameTimestampMs()).toString())
                 .addField(point.nameAnonymous(), Boolean.parseBoolean((body.get(point.nameAnonymous()).toString())))
-                .addField(point.namePlaceId(), Integer.parseInt (body.get(point.namePlaceId()).toString()))
+                .addField(point.namePlaceId(), Integer.parseInt(listPlaceData.get(i)))
                 .addField(point.nameInside(), Boolean.parseBoolean(body.get(point.nameInside()).toString()))
-                .build()); //Questo va cxommentato perchè funziona a prescindere quello sopra
+                .build());
+            }         
+        }else{
+            influxDB.close();
+            return "Query malformed";
         }
-
-        
-            
-        /* FUNZIONANTE 
-
-        influxDB.write(Point.measurement(point.nameMeasurement())
-        .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-        .addField(point.nameUserId(), Integer.parseInt(body.get(point.nameUserId())))
-        //.addField(point.nameAnonymousKey(), body.get(point.nameAnonymousKey()))
-        .addField(point.namePlaceId(), Integer.parseInt(body.get(point.namePlaceId())))
-        .addField(point.nameInside(), Boolean.parseBoolean(body.get(point.nameInside())))
-        .build()); */
-            
 
         influxDB.close();
         

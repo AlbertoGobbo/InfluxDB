@@ -13,16 +13,29 @@ Below the are the measurement's columns, with the association of field_key -> fi
 | <!--      | TIMESTAMP                      | TIMESTAMP    | string    | Boolean      | string  | Boolean | --> |
 | ...       | ...                            | ...          | ...       | ...          | ...     |
 
-Example of JSON received:
+Example of JSON received (if user enters in a private organization):
 
 {
   "timestampMs": 1585906080346,
   "userId": 34753543,
   "placeId": [
+    45378,
+    71984
+  ],
+  "anonymous": false,
+  "inside": true
+}
+
+Example of JSON received (if user enters in a public organization):
+
+{
+  "timestampMs": 1585906080346,
+  "userId": "",
+  "placeId": [
     453785436,
     71984147938
   ],
-  "anonymous":false,
+  "anonymous": true,
   "inside": true
 }
 

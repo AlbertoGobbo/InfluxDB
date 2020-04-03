@@ -2,10 +2,9 @@ package com.example.StalkerServerInfluxDB;
 
 import java.time.Instant;
 import org.influxdb.annotation.*;
-
 import jdk.jfr.Timestamp;
 
-@Measurement(name = "access_log")
+@Measurement(name = "accessLog")
 public class InfluxDBPoint{
 
     @Timestamp
@@ -13,7 +12,7 @@ public class InfluxDBPoint{
     private Instant time;
 
     @Column(name = "timestampMs")
-    private Timestamp timestampMs;
+    private java.sql.Timestamp timestampMs;
     
     @Column(name = "userId")
     private int userId;
@@ -64,7 +63,7 @@ public class InfluxDBPoint{
         return time;
     }
 
-    public Timestamp getTimestampMs(){
+    public java.sql.Timestamp getTimestampMs(){
         return timestampMs;
     }
 
