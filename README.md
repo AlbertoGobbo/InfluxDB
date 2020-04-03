@@ -7,10 +7,24 @@ The aim of this project is to create an API which is able to guarantee the commu
 Name of measurement (similar to the concept of table in SQL): accessLog
 Below the are the measurement's columns, with the association of field_key -> field_value and the data type for each one:
 
-| time      | userId  | anonymousKey | placeId | inside  |
-| --------- | ------- | ------------ | ------- | ------- |
-| TIMESTAMP | Integer | Integer      | Integer | Boolean |
-| ...       | ...     | ...          | ...     | ...     |
+| time      | timestampMs (via locationInfo) | userId       | anonymous | placeId      | inside  |
+| --------- | ------------------------------ | ------------ | --------- | ------------ | ------- |
+| TIMESTAMP | TIMESTAMP                      | unsigned int | Boolean   | unsigned int | Boolean |
+| <!--      | TIMESTAMP                      | TIMESTAMP    | string    | Boolean      | string  | Boolean | --> |
+| ...       | ...                            | ...          | ...       | ...          | ...     |
+
+Example of JSON received:
+
+{
+  "timestampMs": 1585906080346,
+  "userId": 34753543,
+  "placeId": [
+    453785436,
+    71984147938
+  ],
+  "anonymous":false,
+  "inside": true
+}
 
 ## Library in use
 

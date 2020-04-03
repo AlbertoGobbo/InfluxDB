@@ -11,12 +11,18 @@ public class InfluxDBPoint{
     @Timestamp
     @Column(name = "time")
     private Instant time;
+
+    @Column(name = "timestampMs")
+    private Timestamp timestampMs;
     
     @Column(name = "userId")
     private int userId;
 
-    @Column(name = "anonymousKey")
-    private int anonymousKey;
+    //@Column(name = "anonymous") dopo POC
+    //private String anonymous;
+
+    @Column(name = "anonymous")
+    private boolean anonymous;
 
     @Column(name = "placeId")
     private int placeId;
@@ -29,12 +35,20 @@ public class InfluxDBPoint{
         return "accessLog";
     }
 
+    public String nameTimestampMs(){
+        return "timestampMs";
+    }
+
     public String nameUserId(){
         return "userId";
     }
 
-    public String nameAnonymousKey(){
+    /*public String nameAnonymousKey(){
         return "anonymousKey";
+    }*/
+
+    public String nameAnonymous(){
+        return "anonymous";
     }
 
     public String namePlaceId(){
@@ -50,12 +64,20 @@ public class InfluxDBPoint{
         return time;
     }
 
+    public Timestamp getTimestampMs(){
+        return timestampMs;
+    }
+
     public int getUserId(){
         return userId;
     }
 
-    public int getAnonymousKey(){
+    /*public int getAnonymousKey(){
         return anonymousKey;
+    }*/
+
+    public boolean getAnonymous(){
+        return anonymous;
     }
 
     public int getPlaceId(){
@@ -67,20 +89,24 @@ public class InfluxDBPoint{
     }
 
     //Setter methods
-    public void setUserId(Integer s){
-        this.userId=s;
+    public void setUserId(int s){
+        this.userId = s;
     }
 
-    public void setAnonymousKey(int s){
+    /*public void setAnonymousKey(int s){
         this.anonymousKey=s;
+    }*/
+
+    public void setAnonymous(boolean b){
+        this.anonymous = b;
     }
 
     public void setPlaceId(int s){
-        this.placeId=s;
+        this.placeId = s;
     }
 
-    public void setInside(Boolean b){
-        this.inside=b;
+    public void setInside(boolean b){
+        this.inside = b;
     }
     
 }

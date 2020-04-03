@@ -1,13 +1,13 @@
 package com.example.StalkerServerInfluxDB;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.Point;
+import org.json.*;
 import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
@@ -28,18 +28,22 @@ public class Controller{
         influxDB.setDatabase(connection.getDatabase());
 
         if(!body.get(point.namePlaceId()).getClass().isArray()){
-            List<Integer> listPlaceIds = new ArrayList<>();
-            listPlaceIds = Arrays.asList((Integer[]) body.get(point.namePlaceId())); //errore qui
 
-            //Object[] objectPlaceIds = (Object[]) body.get(point.namePlaceId());
+            JSONObject jsonObject = new JSONObject(body);
+            List<String> listPlaceData = new ArrayList<String>();
+            JSONArray jArray = jsonObject.getJSONArray(point.namePlaceId());
+            if (jArray != null) { 
+                for (int i = 0; i < jArray.length(); i++)
+                    listPlaceData.add(jArray.get(i).toString());
+            }
             
 
-            for(int i = 0; i < listPlaceIds.size(); i++) {
+            for(int i = 0; i < listPlaceData.size(); i++) {
                 influxDB.write(Point.measurement(point.nameMeasurement())
                 .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
                 .addField(point.nameUserId(), Integer.parseInt(body.get(point.nameUserId()).toString()))
-                .addField(point.nameAnonymousKey(), Integer.parseInt(body.get(point.nameAnonymousKey()).toString()))
-                .addField(point.namePlaceId(), (Number) listPlaceIds.get(i))
+                .addField(point.nameAnonymous(), Boolean.parseBoolean((body.get(point.nameAnonymous()).toString())))
+                .addField(point.namePlaceId(), Integer.parseInt(listPlaceData.get(i)))
                 .addField(point.nameInside(), Boolean.parseBoolean(body.get(point.nameInside()).toString()))
                 .build());
             } 
@@ -47,10 +51,10 @@ public class Controller{
             influxDB.write(Point.measurement(point.nameMeasurement())
                 .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
                 .addField(point.nameUserId(), Integer.parseInt(body.get(point.nameUserId()).toString()))
-                .addField(point.nameAnonymousKey(), Integer.parseInt(body.get(point.nameAnonymousKey()).toString()))
+                .addField(point.nameAnonymous(), Boolean.parseBoolean((body.get(point.nameAnonymous()).toString())))
                 .addField(point.namePlaceId(), Integer.parseInt (body.get(point.namePlaceId()).toString()))
                 .addField(point.nameInside(), Boolean.parseBoolean(body.get(point.nameInside()).toString()))
-                .build());
+                .build()); //Questo va cxommentato perchè funziona a prescindere quello sopra
         }
 
         
